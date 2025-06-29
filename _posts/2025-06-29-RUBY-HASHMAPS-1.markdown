@@ -45,7 +45,7 @@ my_hashmap.default_proc = proc { |h, k| "#{k} not found!" }
 This way, `my_hashmap[42]` will return `"42 not found!"` and thus we have solved the issue of being limited to an hard-coded value for keys that are not in our map.  
 However, don't be fooled: the values our hashmap **contains** haven't actually changed. Rather, we're computing the string every time with the default procedure since our hashmap hasn't actually _stored_ anything.  
 Indeed, the size of our map hasn't changed:
-![image](https://github.com/user-attachments/assets/48378c85-d351-455e-a27b-687baae81417)
+![image](/assets/images/2025-06-29-RUBY-HASHMAPS-1/1.png)
 (screenshot of a code snippet running in the `irb` interactive Ruby interpreter)  
 Since the default procedure is just that, a procedure, we can do any computation we want in it, including assigning hashmap values:
 
