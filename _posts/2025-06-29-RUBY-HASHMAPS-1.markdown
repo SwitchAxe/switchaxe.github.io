@@ -14,14 +14,14 @@ my_hashmap = { 0 => 1, "foo" => "bar", :abc => :def }
 {% endhighlight %}  
 
 # So what's the big deal?
-At this point, you'll probably be wondering how this is any different from the hashmaps you commonly found in other languages like Cpp, Java, Python, or even more exotic ones like Scheme...  
+At this point, you'll probably be wondering how this is any different from the hashmaps you may have found in other languages like Cpp, Java, Python, or even more exotic ones like Scheme...  
 Ruby hashmaps have a certain feature called the `default` element.  
 The `default` element returns a set value whenever we try to access a key that is not otherwise present in the map.  
 By default this value is `nil`, so unsurprisingly  
 {% highlight ruby %}
 my_hashmap[42]
 {% endhighlight %}  
-returns `nil`. The `default` element of any Ruby hashmap is stored in the `default` method, freely accessible and, most importantly, overwriteable:
+returns `nil`. The `default` element of any Ruby hashmap is stored in the `default` attribute, freely accessible and, most importantly, overwriteable:
 {% highlight ruby %}
 my_hashmap.default = "<3"
 {% endhighlight %}  
@@ -31,6 +31,7 @@ Hashmaps also have a `default_proc` attribute that uses a **proc**edure (a.k.a. 
 default procedures are assigned like this:
 {% highlight ruby %}
 # default procs take two arguments as input: the hash table itself and the key, in order
+
 # defining a default proc with the standard function definition syntax
 def my_procedure(hash, key)
   # the #{} inside the string is an interpolation to add 'key' as the value of the argument itself rather than a string
@@ -38,7 +39,7 @@ def my_procedure(hash, key)
 end
 my_hashmap.default_proc = my_procedure
 
-# but there are many different ways to define functions. Here are a few more ways to do the same thing:
+# but Ruby has several different syntax constructs for as many types of function. Here are a few more ways to do the same thing:
 my_hashmap.default_proc = -> (h, k) { "#{k} not found!" }
 my_hashmap.default_proc = proc { |h, k| "#{k} not found!" }
 {% endhighlight %}  
